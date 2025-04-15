@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "BLURit – Blur Out the Nosy Eyes!",
+    "version": "1.0.0",
+    "description": "Blur page elements with hover unblur and spotlight functionality using React and Tailwind",
+    "permissions": ["storage", "activeTab"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "./icon.svg",
+        "48": "./icon.svg",
+        "128": "./icon.svg"
+      }
+    },
+    "icons": {
+      "16": "./icon.svg",
+      "48": "./icon.svg",
+      "128": "./icon.svg"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["content.css"],
+        "run_at": "document_idle"
+      }
+    ]
+  }
