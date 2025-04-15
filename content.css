@@ -1,0 +1,24 @@
+.blur-extension-text,
+.blur-extension-image,
+.blur-extension-video {
+  transition: filter 0.3s ease !important;
+}
+
+.blur-extension-text:hover,
+.blur-extension-image:hover,
+.blur-extension-video:hover,
+.blur-extension-playing {
+  filter: blur(0px) !important;
+}
+
+.blur-extension-spotlight-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  z-index: 2147483647;
+  transition: backdrop-filter 0.3s ease;
+}
