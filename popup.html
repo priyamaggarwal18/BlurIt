@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Blur Options</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      width: 300px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #cbb5ff;
+    }
+
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0;
+      padding: 10px;
+      background-color: #1d1d1d;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .toggle-container:hover {
+      background-color: #292929;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .icon {
+      color: #9b5cff;
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #9b5cff;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .blur-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #9b5cff; /* Purple track color */
+  border-radius: 3px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.blur-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #9b5cff; /* Purple thumb */
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 0 5px #9b5cff;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.blur-slider::-webkit-slider-thumb:hover {
+  background: #cbb5ff; /* Lighter purple when hovered */
+  transform: scale(1.1);
+}
+
+.blur-slider::-moz-range-track {
+  background: #9b5cff; /* Purple track for Firefox */
+  border-radius: 3px;
+}
+
+.blur-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #9b5cff; /* Purple thumb for Firefox */
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 0 5px #9b5cff;
+}
+
+.blur-slider::-ms-track {
+  background: #9b5cff; /* Purple track for Internet Explorer */
+  border-radius: 3px;
+  width: 100%;
+  height: 6px;
+  border-color: transparent;
+  color: transparent;
+  /* Required for IE */
+}
+
+.blur-slider::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #9b5cff; /* Purple thumb for IE */
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 0 5px #9b5cff;
+}
+
+    #blur-value {
+      text-align: center;
+      margin: 5px 0;
+      color: #ddd;
+    }
+
+    .feature {
+      background-color: #222;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .feature strong {
+      color: #fff;
+    }
+
+    .new-feature {
+      background-color: #1b4724;
+      border-left: 4px solid #2ecc71;
+      padding: 10px;
+      border-radius: 8px;
+      color: #c9f7c3;
+      margin-top: 10px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .new-feature i {
+      color: #2ecc71;
+      margin-right: 8px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #cbb5ff;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+
+    .disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(80%);
+  transition: opacity 0.3s, filter 0.3s;
+}
+  </style>
+</head>
+<body>
+    <div style="text-align: center;">
+
+    <img src="icon.svg" alt="" height="60px">
+    <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #888;">
+        Made with <span style="color: #ff66c4;">❤️</span> by <strong style="color: #cbb5ff;">Priyam Aggarwal</strong>
+      </div>
+      </div>
+  <div class="section-title">  Blur Everything</div>
+  <!-- Toggle for Blur Effects -->
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-blur icon"></i> Enable Blur Effects
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="enable-blur">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-font icon"></i> Blur Text
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="blur-text" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-image icon"></i> Blur Images
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="blur-images" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-video icon"></i> Blur Videos
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="blur-videos" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-play-circle icon"></i> Auto-unblur Playing Videos
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="auto-unblur-playing" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Blur Intensity -->
+  <div class="section-title">Blur Intensity</div>
+  <div>
+    <span id="blur-value">5px</span>
+    <input type="range" id="blur-level" min="1" max="10" value="3" class="blur-slider">
+  </div>
+
+  <!-- Spotlight Toggle -->
+  <div class="section-title">Mouse Spotlight</div>
+  <div class="toggle-container">
+    <label class="toggle-label">
+      <i class="fas fa-search icon"></i> Enable Spotlight
+    </label>
+    <label class="toggle">
+      <input type="checkbox" id="spotlight-blur">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- New Feature -->
+  <div class="new-feature">
+    <i class="fas fa-star"></i>
+    <span><strong>New Feature:</strong> Mouse spotlight unblurs an area around your cursor!</span>
+  </div>
+
+  <!-- Features List -->
+  <div class="feature">
+    <strong>Smart Features:</strong>
+    <ul>
+      <li>Hover to unblur any element</li>
+      <li>Videos unblur while playing</li>
+      <li>Customize blur intensity</li>
+    </ul>
+  </div>
+
+ 
+<script src="popup.js"></script>
+</body>
+</html>
