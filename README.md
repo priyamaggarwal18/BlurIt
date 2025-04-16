@@ -28,7 +28,7 @@
 Since **BLURit** is not listed on any browser extension store yet, you can manually install it in your web browser with the steps below:
 
 1. **Visit the Official Website:**
-   - Head over to the [BLURit Website](https://your-website-link.com) to access the latest version of the extension.
+   - Head over to the [BLURit Website](https://blurit.vercel.app/) to access the latest version of the extension.
 
 2. **Download the ZIP File:**
    - On the website, click on the **"Add to Browser"** or **"Download Extension"** button to download the `.zip` file.
