@@ -12,7 +12,7 @@
 
 # BLURit
 
-**BLURit** is a powerful and intuitive Chrome extension built to protect your on-screen privacy in any situation. Whether you're collaborating in a bustling open workspace, screen sharing during a live meeting, or simply working from a public space like a café or library, BLURit helps you stay in control of what others see.
+**BLURit** is a powerful and intuitive Web extension built to protect your on-screen privacy in any situation. Whether you're collaborating in a bustling open workspace, screen sharing during a live meeting, or simply working from a public space like a café or library, BLURit helps you stay in control of what others see.
 
 <br>
 
